@@ -3,6 +3,8 @@ import "./reset.css";
 import "./App.css";
 import Home from "./pages/home.js";
 import SendTest from "./pages/sendTest";
+import ChooseForm from "./pages/chooseForm";
+import Professors from "./pages/professors";
 
 function App() {
   return (
@@ -14,10 +16,13 @@ function App() {
         <Route path="/send-test" exact>
           <SendTest />
         </Route>
-        {/*} <Route path="/professors" exact>
+        <Route path="/view-test" exact>
+          <ChooseForm />
+        </Route>
+        <Route path="/professors" exact>
           <Professors />
         </Route>
-        <Route path="/subjects" exact>
+        {/*} <Route path="/subjects" exact>
           <Subjects />
   </Route>*/}
       </Switch>

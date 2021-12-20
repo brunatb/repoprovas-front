@@ -167,6 +167,7 @@ const Box = styled.div`
     line-height: 23px;
     color: #000000;
     border-radius: 5px;
+    margin-top: 10px;
   }
   button {
     width: 100%;
@@ -190,6 +191,7 @@ const Box = styled.div`
     background: white;
     border: none;
     padding: 18px 0 18px 15px;
+    margin-top: 10px;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
     font-family: "Raleway", sans-serif;
     font-style: normal;
