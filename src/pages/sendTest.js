@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Loader from "react-loader-spinner";
-import { getCategories, getProfessors, getSubjects } from "../service/api";
+import {
+  getCategories,
+  getProfessors,
+  getSubjects,
+  postTest,
+} from "../service/api";
 
 export default function SendTest() {
   const history = useHistory();
@@ -44,21 +49,31 @@ export default function SendTest() {
       });
   }, []);
 
-  console.log(categories);
-  console.log(subjects);
-  console.log(professors);
   function sendExam(e) {
     e.preventDefault();
-    console.log(category);
-  }
+    setLoading(true);
+    const body = {
+      name,
+      category,
+      subject,
+      professor,
+      pdfLink,
+    };
 
-  console.log(category);
-  console.log(subject);
-  console.log(professor);
+    postTest(body)
+      .then((res) => {
+        history.push("/");
+        setLoading(false);
+      })
+      .catch((err) => {
+        alert("Erro ao obter categorias");
+        setLoading(false);
+      });
+  }
 
   return (
     <Container>
-      <Title>Insira as informações da sua prova:</Title>
+      <h1>Enter your test information</h1>
       <Box>
         <form onSubmit={(event) => sendExam(event)}>
           <input
@@ -130,17 +145,6 @@ export default function SendTest() {
   );
 }
 
-const Title = styled.div`
-  font-family: "Raleway", sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 32px;
-  text-align: center;
-  line-height: 30px;
-  color: #000000;
-  margin-bottom: 40px;
-`;
-
 const Box = styled.div`
   width: 50%;
 
@@ -196,16 +200,11 @@ const Box = styled.div`
     border-radius: 5px;
   }
   @media (max-width: 600px) {
-    input {
-      width: 100%;
-    }
+    input,
     form {
       width: 100%;
-      background-color: red;
     }
-
     select {
-      width: 100vw;
       width: 195px;
     }
     button {
