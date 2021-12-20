@@ -1,7 +1,8 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./reset.css";
 import "./App.css";
-import Home from "./pages/home/index.js";
+import Home from "./pages/home.js";
+import SendTest from "./pages/sendTest";
 
 function App() {
   return (
@@ -10,10 +11,10 @@ function App() {
         <Route path="/" exact>
           <Home />
         </Route>
-        {/*<Route path="/send-test" exact>
+        <Route path="/send-test" exact>
           <SendTest />
         </Route>
-        <Route path="/professors" exact>
+        {/*} <Route path="/professors" exact>
           <Professors />
         </Route>
         <Route path="/subjects" exact>
